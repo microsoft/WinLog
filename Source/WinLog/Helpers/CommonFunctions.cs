@@ -1,12 +1,10 @@
 ﻿// /********************************************************
 // *                                                       *
 // *   Copyright (C) Microsoft. All rights reserved.       *
+// *   Licensed under the MIT license.                     *
 // *                                                       *
 // ********************************************************/
 
-/// <summary>
-/// Static helper methods for use in the WinLog namespace. 
-/// </summary>
 namespace WinLog.Helpers
 {
     using System;

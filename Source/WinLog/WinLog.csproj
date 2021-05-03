@@ -1,20 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net452</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>3.0.1.0</AssemblyVersion>
-    <FileVersion>3.0.1.0</FileVersion>
-    <Version>3.0.1</Version>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>3.4.3</Version>
     <Description>Windows Event Log utility for reading OS Logs, EVTX files, specific to Windows</Description>
     <Copyright>Copyright © Microsoft. All Rights Reserved</Copyright>
+    <RepositoryUrl>https://msazure.visualstudio.com/One/_git/SecEng-Dev-SIEMfx</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Authors>Microsoft</Authors>
+    <Authors>C+E Security Infra SecEng Dev</Authors>
+    <Description>Library for executing Kusto queries on live streams of data</Description>
+    <PackageReleaseNotes>Library for executing Kusto queries on live streams of data</PackageReleaseNotes>
     <PackageTags>Windows OS EVTX Logs Playback Replay</PackageTags>
-    <RepositoryType>git</RepositoryType>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <AssemblyName>Microsoft.WinLog</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,28 +23,11 @@
   </ItemGroup>
 
   <!-- .NET 4.5 references, compilation flags and build options -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-	
-  <PropertyGroup Condition=" '$(CdpxPostSigning)' == 'true' ">
-	<IsCleaning>false</IsCleaning>
-	<CopyRoleFilesDependsOn />
-	<AddRoleContentDependsOn />
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\..\.version\PipelineAssemblyInfo.cs" Link="Properties\PipelineAssemblyInfo.cs" />
-  </ItemGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	<SignAssembly>true</SignAssembly>
-	<DelaySign>true</DelaySign>
-	<KeyFile>..\35MSSharedLib1024.snk</KeyFile>
-	<AssemblyOriginatorKeyFile>..\35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
 
 </Project>

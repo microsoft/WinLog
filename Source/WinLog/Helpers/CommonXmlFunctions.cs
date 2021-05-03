@@ -1,6 +1,7 @@
 ﻿// /********************************************************
 // *                                                       *
 // *   Copyright (C) Microsoft. All rights reserved.       *
+// *   Licensed under the MIT license.                     *
 // *                                                       *
 // ********************************************************/
 
@@ -32,6 +33,9 @@ namespace WinLog.Helpers
                     case "Provider":
                     case "TimeCreated":
                         return new KeyValuePair<string, object>(attributeName, xElement.FirstAttribute.Value);
+                    case "Correlation":
+                        var xAttribute = xElement?.Attribute("ActivityID");
+                        return xAttribute != null ? new KeyValuePair<string, object>(attributeName, xAttribute.Value) : new KeyValuePair<string, object>(attributeName, string.Empty);
                     case "Execution":
                         return new KeyValuePair<string, object>(attributeName,
                             string.Format("{0}:{1}", xElement.FirstAttribute.Value,
@@ -46,7 +50,6 @@ namespace WinLog.Helpers
                     case "Opcode":
                     case "Keywords":
                     case "EventRecordID":
-                    case "Correlation":
                     case "Channel":
                     case "Computer":
                         return new KeyValuePair<string, object>(attributeName, xElement.Value);
