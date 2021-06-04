@@ -2,5 +2,5 @@
 
 For details, please click here!
 
-- Click to discover -> [Winlog](Source/Readme.md)
+- Click to discover -> [Winlog](Source)
 
