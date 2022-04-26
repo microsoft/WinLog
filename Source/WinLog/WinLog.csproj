@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net472</TargetFrameworks>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>3.4.3</Version>
+    <Version>3.4.5</Version>
     <Description>Windows Event Log utility for reading OS Logs, EVTX files, specific to Windows</Description>
     <Copyright>Copyright © Microsoft. All Rights Reserved</Copyright>
     <RepositoryUrl>https://msazure.visualstudio.com/One/_git/SecEng-Dev-SIEMfx</RepositoryUrl>
@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <!-- .NET 4.5 references, compilation flags and build options -->
