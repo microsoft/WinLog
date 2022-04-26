@@ -7,11 +7,8 @@
 
 namespace WinLog
 {
-    using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Diagnostics.Eventing.Reader;
-    using System.Linq;
 
     internal class ProviderStringCache
     {
@@ -43,25 +40,42 @@ namespace WinLog
             DisplayNames names = null;
             if (!events.TryGetValue(evt.Id, out names))
             {
-                names = null;
+                names = new DisplayNames();
+
                 try
                 {
-                    names = new DisplayNames
-                    {
-                        Level = ValueOrEmpty(evt.LevelDisplayName),
-                        Task = ValueOrEmpty(evt.TaskDisplayName),
-                        Opcode = ValueOrEmpty(evt.OpcodeDisplayName),
-                        Keywords = ValueOrEmpty(string.Join(",", evt.KeywordsDisplayNames))
-                    };
+                    names.Level = ValueOrEmpty(evt.LevelDisplayName);
                 }
-                catch (Exception)
+                catch
                 {
-                    names = new DisplayNames
-                    {
-                        Level = ValueOrEmpty(evt.Level.ToString()),
-                        Task = ValueOrEmpty(evt.Task.ToString()),
-                        Opcode = ValueOrEmpty(evt.Opcode.ToString())
-                    };
+                    names.Level = ValueOrEmpty(evt.Level);
+                }
+
+                try
+                {
+                    names.Task = ValueOrEmpty(evt.TaskDisplayName);
+                }
+                catch
+                {
+                    names.Task = ValueOrEmpty(evt.Task);
+                }
+
+                try
+                {
+                    names.Opcode = ValueOrEmpty(evt.OpcodeDisplayName);
+                }
+                catch
+                {
+                    names.Opcode = ValueOrEmpty(evt.Opcode);
+                }
+
+                try
+                {
+                    names.Keywords = ValueOrEmpty(evt.KeywordsDisplayNames);
+                }
+                catch
+                {
+                    names.Keywords = ValueOrEmpty(evt.Keywords.ToString());
                 }
 
                 events.TryAdd(evt.Id, names);
@@ -73,13 +87,13 @@ namespace WinLog
             keywords = names.Keywords;
         }
 
-        private string ValueOrEmpty(string value)
+        private string ValueOrEmpty(object value)
         {
             if (value == null)
             {
                 return string.Empty;
             }
-            return value;
+            return value.ToString();
         }
 
         private class DisplayNames
